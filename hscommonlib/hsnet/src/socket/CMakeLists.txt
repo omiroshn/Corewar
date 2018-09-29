@@ -1,0 +1,13 @@
+cmake_minimum_required( VERSION 3.12 FATAL_ERROR )
+
+add_subdirectory( tcp )
+
+set( SOCKET_FILES	socket_private.h
+					init.c
+					release.c
+					sockaddr.c )
+
+PREPEND( SOCKET_SOURCES ${CMAKE_CURRENT_SOURCE_DIR} ${SOCKET_FILES} )
+
+set( HSNET_SOURCES ${HSNET_SOURCES} ${SOCKET_SOURCES} PARENT_SCOPE )
+set( HSNET_PRIVATE_INCLUDE_DIR ${HSNET_PRIVATE_INCLUDE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE )
